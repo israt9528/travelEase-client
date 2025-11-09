@@ -42,7 +42,7 @@ const Register = () => {
       setError("Password must have an upperCase & a lowerCase character!!");
       return;
     } else if (!lengthPattern.test(password)) {
-      setError("Password length must be at least 6 characters!!");
+      setError("Password length must have at least 6 characters!!");
       return;
     }
 
@@ -56,7 +56,7 @@ const Register = () => {
           .then(() => {
             setUser({ ...user, displayName: name, photoURL: photoURL });
             toast.success(
-              "🎉 You’re in! Thanks for joining the WarmPaws family!"
+              "🎉 You’re in! Thanks for joining the TravelEase family!"
             );
 
             navigate("/");
@@ -89,6 +89,12 @@ const Register = () => {
 
         <div className="card-body">
           <form onSubmit={handleSignup}>
+            {error && (
+              <div className="mb-5 p-5 rounded bg-red-200 text-red-700 font-semibold text-center">
+                {error}
+              </div>
+            )}
+
             <fieldset className="fieldset">
               <label className="label">Your Name</label>
               <input
@@ -170,7 +176,6 @@ const Register = () => {
               </button>
             </fieldset>
           </form>
-          {error && <p className="text-red-500">{error}</p>}
           <p className="text-[#4e312d] ">
             Already Have an Account? Please{" "}
             <NavLink

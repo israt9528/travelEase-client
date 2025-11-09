@@ -40,15 +40,17 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
-        toast.success("🎉 You’re in! Thanks for joining the WarmPaws family!");
+        toast.success(
+          "🎉 You’re in! Thanks for joining the TravelEase family!"
+        );
         e.target.reset();
 
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
-        const errorCode = error.code;
+        // const errorCode = error.code;
         // const errorMessage = error.message;
-        setError(errorCode);
+        setError("❌ Login failed. Please check your credentials.");
       });
   };
 
@@ -67,6 +69,12 @@ const Login = () => {
 
         <div className="card-body">
           <form onSubmit={handleLogin}>
+            {error && (
+              <div className="mb-5 p-5 rounded bg-red-200 text-red-700 font-semibold text-center">
+                {error}
+              </div>
+            )}
+
             <fieldset className="fieldset">
               <label className="label">Email</label>
               <input
@@ -139,7 +147,6 @@ const Login = () => {
               </button>
             </fieldset>
           </form>
-          {error && <p className="text-red-500">{error}</p>}
 
           <p className="text-[#4e312d] ">
             New to our website? Please{" "}
