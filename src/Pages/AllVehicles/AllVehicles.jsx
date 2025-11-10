@@ -10,7 +10,7 @@ const AllVehicles = () => {
 
   useEffect(() => {
     axiosInstance.get("/vehicles").then((data) => {
-      console.log(data.data);
+      // console.log(data.data);
       setVehicles(data.data);
       setLoading(false);
     });

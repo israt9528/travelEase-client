@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router";
 
 const VehicleCard = ({ vehicle }) => {
-  const { vehicleName, category, pricePerDay, coverImage, availability } =
+  const { _id, vehicleName, category, pricePerDay, coverImage, availability } =
     vehicle;
 
   return (
@@ -41,12 +42,11 @@ const VehicleCard = ({ vehicle }) => {
 
         {/* Buttons */}
         <div className="mt-4 flex gap-3">
-          <button
-            // onClick={() => onViewDetails && onViewDetails(vehicle)}
-            className="flex-1 text-sm px-3 py-2 rounded-lg border border-indigo-600 text-indigo-600 hover:bg-indigo-50 transition-colors duration-200"
-          >
-            View Details
-          </button>
+          <Link to={`/vehicle-details/${_id}`}>
+            <button className="flex-1 text-sm px-3 py-2 rounded-lg border border-indigo-600 text-indigo-600 hover:bg-indigo-50 transition-colors duration-200">
+              View Details
+            </button>
+          </Link>
         </div>
       </div>
     </div>
