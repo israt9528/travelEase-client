@@ -17,7 +17,7 @@ const VehicleDetails = () => {
 
   useEffect(() => {
     axiosSecure.get(`/vehicles/${id}`).then((data) => {
-      console.log(data.data);
+      //   console.log(data.data);
       setVehicle(data.data);
       setLoading(false);
     });

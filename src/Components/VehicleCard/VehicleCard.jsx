@@ -6,7 +6,7 @@ const VehicleCard = ({ vehicle }) => {
     vehicle;
 
   return (
-    <div className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-300">
+    <div className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-300 w-full">
       {/* Vehicle Image */}
       <div className="">
         <img
