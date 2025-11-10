@@ -28,12 +28,14 @@ const MyVehicleCard = ({ vehicle }) => {
             <FaEye /> View Details
           </button>
         </Link>
-        <button
-          // onClick={() => onUpdate(vehicle)}
-          className="btn btn-sm btn-warning text-white flex items-center gap-2 w-full sm:w-auto"
-        >
-          <FaEdit /> Update
-        </button>
+        <Link to={`/update/${_id}`}>
+          <button
+            // onClick={() => onUpdate(vehicle)}
+            className="btn btn-sm btn-warning text-white flex items-center gap-2 w-full sm:w-auto"
+          >
+            <FaEdit /> Update
+          </button>
+        </Link>
         <button
           // onClick={() => onDelete(vehicle)}
           className="btn btn-sm btn-error text-white flex items-center gap-2 w-full sm:w-auto"
