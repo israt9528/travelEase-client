@@ -8,6 +8,7 @@ import AddVehicle from "../Pages/AddVehicle/AddVehicle";
 import MyVehicles from "../Pages/MyVehicles/MyVehicles";
 import MyBookings from "../Pages/MyBookings/MyBookings";
 import PrivateRoute from "./PrivateRoute";
+import VehicleDetails from "../Pages/VehicleDetails/VehicleDetails";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyBookings></MyBookings>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/vehicle-details/:id",
+        element: (
+          <PrivateRoute>
+            <VehicleDetails></VehicleDetails>
           </PrivateRoute>
         ),
       },
