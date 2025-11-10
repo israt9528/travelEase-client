@@ -1,11 +1,41 @@
 import React from "react";
 import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const MyVehicleCard = ({ vehicle }) => {
-  //   const { vehicleName, owner, pricePerDay, coverImage } = vehicle;
   const { _id, vehicleName, owner, category, pricePerDay, coverImage } =
     vehicle;
+
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
+
+  const handleDelete = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/vehicles/${_id}`).then((data) => {
+          console.log(data.data);
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+          navigate("/all-vehicles");
+        });
+      }
+    });
+  };
+
   return (
     <tr className="hover:bg-base-200 transition-all">
       <td>
@@ -37,7 +67,7 @@ const MyVehicleCard = ({ vehicle }) => {
           </button>
         </Link>
         <button
-          // onClick={() => onDelete(vehicle)}
+          onClick={handleDelete}
           className="btn btn-sm btn-error text-white flex items-center gap-2 w-full sm:w-auto"
         >
           <FaTrashAlt /> Delete
