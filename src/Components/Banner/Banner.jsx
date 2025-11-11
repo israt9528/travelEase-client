@@ -41,9 +41,10 @@ export default function HeroSlider() {
             {/* Text overlay with fade animation */}
             <motion.div
               className="absolute inset-0 flex flex-col items-center justify-center text-center text-white bg-black/40 px-6"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: false, amount: 0.2 }}
             >
               <h1 className="text-[#f6ddc6]  text-5xl md:text-6xl font-bold mb-4">
                 “Explore Your Journey with Ease”
