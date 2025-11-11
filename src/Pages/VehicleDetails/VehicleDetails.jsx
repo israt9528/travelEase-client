@@ -8,9 +8,11 @@ import {
   FaMapMarkerAlt,
   FaMoneyBillWave,
 } from "react-icons/fa";
+import useAuth from "../../hooks/useAuth";
 
 const VehicleDetails = () => {
   const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
   const { id } = useParams();
   const [vehicle, setVehicle] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,6 +24,14 @@ const VehicleDetails = () => {
       setLoading(false);
     });
   }, [id, axiosSecure]);
+
+  const handleBooked = () => {
+    axiosSecure
+      .post("/my-bookings", { ...vehicle, bookedBy: user.email })
+      .then((data) => {
+        console.log(data.data);
+      });
+  };
 
   if (loading) {
     return <Loading></Loading>;
@@ -94,6 +104,7 @@ const VehicleDetails = () => {
             {/* Action Button */}
             <div className="mt-6">
               <button
+                onClick={handleBooked}
                 className="btn btn-primary w-full md:w-auto"
                 disabled={vehicle.availability !== "Available"}
               >

@@ -128,7 +128,7 @@ const Navbar = () => {
                 </a>
               </li>
               <li>
-                <div>
+                <div className="">
                   {user ? (
                     <button
                       onClick={handleLogout}
@@ -159,7 +159,7 @@ const Navbar = () => {
             </ul>
           </div>
 
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden items-center gap-3 lg:flex">
             {user ? (
               <div className="relative group">
                 <img
