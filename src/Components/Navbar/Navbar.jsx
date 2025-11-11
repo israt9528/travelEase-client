@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Link } from "react-router";
 import { NavLink } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
@@ -10,6 +10,18 @@ import { RiRegisteredLine } from "react-icons/ri";
 
 const Navbar = () => {
   const { user, userLogout } = use(AuthContext);
+
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
 
   const handleLogout = () => {
     userLogout()
@@ -160,6 +172,13 @@ const Navbar = () => {
           </div>
 
           <div className="hidden items-center gap-3 lg:flex">
+            <input
+              onChange={(e) => handleTheme(e.target.checked)}
+              type="checkbox"
+              defaultChecked={localStorage.getItem("theme") === "dark"}
+              className="toggle"
+            />
+
             {user ? (
               <div className="relative group">
                 <img
