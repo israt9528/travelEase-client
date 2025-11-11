@@ -7,8 +7,9 @@ import { FaUser, FaUserCircle } from "react-icons/fa";
 import { FaGear } from "react-icons/fa6";
 import { IoLogIn, IoLogOut } from "react-icons/io5";
 import { RiRegisteredLine } from "react-icons/ri";
+import logo from "../../assets/logo2.jpg";
 
-const Navbar = () => {
+const Navbar = ({ isHome }) => {
   const { user, userLogout } = use(AuthContext);
 
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
@@ -57,9 +58,15 @@ const Navbar = () => {
   );
 
   return (
-    <div>
-      <div className="navbar bg-base-100 shadow-sm">
-        <div className="navbar-start">
+    <div
+      className={`absolute top-0 left-0 w-full z-20 flex items-center justify-between lg:px-8 transition-all duration-300 ${
+        isHome
+          ? "bg-black/30  text-white"
+          : "bg-base-100 text-gray-800 shadow-md"
+      }`}
+    >
+      <div className="navbar ">
+        <div className="navbar-start ">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -80,65 +87,10 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm text-black dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               {links}
-            </ul>
-          </div>
-          <a className=" text-xl">TravelEase</a>
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{links}</ul>
-        </div>
 
-        <div className="navbar-end">
-          <div className="dropdown dropdown-end z-50 lg:hidden">
-            <div tabIndex={0} role="button" className="mr-3 avatar">
-              <div className="w-9 rounded-full ">
-                {user ? (
-                  <div className="relative group">
-                    <img
-                      className="w-10 h-10 rounded-full cursor-pointer"
-                      src={user.photoURL}
-                      alt={user.displayName || "User avatar"}
-                    />
-                    <span className="absolute left-1/2 -translate-x-1/2 top-12 px-3 py-1 text-sm text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
-                      {user.displayName}
-                    </span>
-                  </div>
-                ) : (
-                  <FaUserCircle size={32} />
-                )}
-              </div>
-            </div>
-            <ul
-              tabIndex="-1"
-              className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
-            >
-              {user ? (
-                <div className=" pb-3 border-b border-b-gray-200">
-                  <li className="text-sm font-bold">{user.displayName}</li>
-                  <li className="text-xs">{user.email}</li>
-                </div>
-              ) : (
-                <div className=" pb-3 border-b border-b-gray-200">
-                  <li className="text-sm font-bold">Name</li>
-                  <li className="text-xs">Email</li>
-                </div>
-              )}
-
-              <li className="mt-3">
-                <Link to={"/profile"}>
-                  <FaUser /> Profile
-                </Link>
-              </li>
-
-              <li>
-                <a>
-                  {" "}
-                  <FaGear /> Settings
-                </a>
-              </li>
               <li>
                 <div className="">
                   {user ? (
@@ -170,8 +122,21 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
+          <div className="flex items-center text-3xl font-bold text-white gap-1.5">
+            <img src={logo} alt="" className="w-12 h-12 rounded-full" />
+            <p>
+              Travel<span className="text-primary">Ease</span>
+            </p>
+          </div>
+        </div>
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1 text-base font-medium">
+            {links}
+          </ul>
+        </div>
 
-          <div className="hidden items-center gap-3 lg:flex">
+        <div className="navbar-end">
+          <div className=" items-center gap-2 flex">
             <input
               onChange={(e) => handleTheme(e.target.checked)}
               type="checkbox"
@@ -179,38 +144,42 @@ const Navbar = () => {
               className="toggle"
             />
 
-            {user ? (
-              <div className="relative group">
-                <img
-                  className="w-10 h-10 rounded-full cursor-pointer"
-                  src={user.photoURL}
-                  alt={user.displayName || "User avatar"}
-                />
-                <span className="absolute left-1/2 -translate-x-1/2 top-12 px-3 py-1 text-sm text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
-                  {user.displayName}
-                </span>
-              </div>
-            ) : (
-              <FaUserCircle size={32} />
-            )}
+            <div>
+              {user ? (
+                <div className="relative group">
+                  <img
+                    className="w-10 h-10 rounded-full cursor-pointer"
+                    src={user.photoURL}
+                    alt={user.displayName || "User avatar"}
+                  />
+                  <span className="absolute left-1/2 -translate-x-1/2 top-12 px-3 py-1 text-sm text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
+                    {user.displayName}
+                  </span>
+                </div>
+              ) : (
+                <FaUserCircle size={32} />
+              )}
+            </div>
 
-            {user ? (
-              <button
-                onClick={handleLogout}
-                className="btn text-lg ml-3 bg-[#da945a] text-white"
-              >
-                Logout
-              </button>
-            ) : (
-              <div className="space-x-1">
-                <Link to="/auth/login" className="btn">
-                  Login
-                </Link>
-                <Link to="/auth/register" className="btn">
-                  Register
-                </Link>
-              </div>
-            )}
+            <div className="hidden lg:flex">
+              {user ? (
+                <button
+                  onClick={handleLogout}
+                  className="btn text-lg ml-3 bg-[#da945a] text-white"
+                >
+                  <IoLogOut /> Logout
+                </button>
+              ) : (
+                <div className="space-x-1">
+                  <Link to="/auth/login" className="btn">
+                    <IoLogIn /> Login
+                  </Link>
+                  <Link to="/auth/register" className="btn">
+                    <RiRegisteredLine /> Register
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

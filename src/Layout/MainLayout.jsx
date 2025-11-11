@@ -1,14 +1,18 @@
 import React from "react";
 import Navbar from "../Components/Navbar/Navbar";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import Footer from "../Components/Footer/Footer";
 import { Toaster } from "react-hot-toast";
 
 const MainLayout = () => {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
   return (
     <div>
-      <Navbar></Navbar>
-      <div>
+      <div className="relative min-h-screen">
+        <Navbar isHome={isHome}></Navbar>
+
         <Outlet></Outlet>
       </div>
       <Footer></Footer>
