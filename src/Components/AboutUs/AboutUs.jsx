@@ -43,11 +43,13 @@ const AboutUs = () => {
         viewport={{ once: false, amount: 0.2 }}
         className="text-center mb-10"
       >
-        <h2 className="text-4xl font-bold text-gray-900">About Us</h2>
-        <p className="mt-3 text-gray-600 max-w-2xl mx-auto">
-          Experience top-tier car rental service with affordable rates, premium
-          vehicles, easy booking, and exceptional customer support for every
-          journey you take.
+        <h2 className="text-4xl font-bold text-gray-800">
+          Drive Your Dreams with TravelEase
+        </h2>
+        <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          TravelEase makes every journey effortless and enjoyable. With a fleet
+          of premium vehicles, transparent pricing, and a seamless booking
+          experience.
         </p>
       </motion.div>
 
