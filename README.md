@@ -9,9 +9,13 @@ TravelEase is a modern full-stack vehicle booking platform that lets users explo
 ## Features:
 
 1.Users can add, update, and delete their own vehicle listings with full CRUD functionality, ensuring complete control over their rentals
+
 2.Authenticated users get a personalized experience with “My Vehicles” and “My Bookings” pages, showing only their added cars and booked rides.
+
 3.All vehicle and booking information is stored and fetched in real time, ensuring fast and reliable data handling across the web.
+
 4.Each vehicle has a dedicated details page with full information, high-quality images, and a “Book Now” button to store booking data instantly.
+
 5.The web provides a smooth user experience with real-time toast alerts for actions like add, update, or delete, and confirmation modals for safer data handling.
 
 ## Packages:
