@@ -32,8 +32,8 @@ const VehicleDetails = () => {
     axiosSecure
       .post("/my-bookings", { ...vehicle, bookedBy: user.email })
       .then((data) => {
-        console.log(data.data);
-        toast.success("booking Successful");
+        // console.log(data.data);
+        toast.success("Thanks for Booking!");
       });
   };
 
@@ -58,7 +58,7 @@ const VehicleDetails = () => {
               <img
                 src={vehicle.coverImage}
                 alt={vehicle.vehicleName}
-                className="w-full h-64 md:h-[470px] object-cover"
+                className="w-full h-64 md:h-[480px] object-cover"
               />
             </figure>
           </motion.div>

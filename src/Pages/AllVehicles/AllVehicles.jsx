@@ -21,7 +21,7 @@ const AllVehicles = () => {
   }
 
   return (
-    <div className="lg:w-7xl mx-auto text-center mb-14 mt-32 p-5">
+    <div className="lg:w-7xl mx-auto text-center mb-14 mt-20 p-5">
       <h1 className="text-4xl md:text-5xl font-bold text-accent-content mb-3">
         “Choose the <span className="text-secondary">Perfect</span> one for
         Every Journey”

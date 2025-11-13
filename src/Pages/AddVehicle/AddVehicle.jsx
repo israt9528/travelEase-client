@@ -2,9 +2,11 @@ import React from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const AddVehicle = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   // console.log(user);
 
   const axiosSecure = useAxiosSecure();
@@ -34,11 +36,12 @@ const AddVehicle = () => {
       userEmail,
       createdAt,
     };
-    console.log(newVehicle);
+    // console.log(newVehicle);
 
     axiosSecure.post("/vehicles", newVehicle).then((data) => {
       console.log(data.data);
       toast.success("New vehicle has been added successfully!!");
+      navigate("/all-vehicles");
     });
   };
 
@@ -88,7 +91,7 @@ const AddVehicle = () => {
                 className="select w-full rounded-full focus:border-0 focus:outline-gray-200"
               >
                 <option value="" disabled>
-                  Select category
+                  Select Category
                 </option>
                 <option value="Sedan">Sedan</option>
                 <option value="SUV">SUV</option>
@@ -96,6 +99,31 @@ const AddVehicle = () => {
                 <option value="Van">Van</option>
                 <option value="Other">Other</option>
               </select>
+            </div>
+
+            <div>
+              <label className="label font-medium text-secondary-content">
+                Availability
+              </label>
+              <select
+                name="availability"
+                defaultValue={""}
+                required
+                className="select w-full rounded-full focus:border-0 focus:outline-gray-200"
+              >
+                <option value="" disabled>
+                  Select Availability
+                </option>
+                <option value="Available">Available</option>
+                <option value="Booked">Booked</option>
+              </select>
+              {/* <input
+                type="text"
+                name="availability"
+                required
+                className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
+                placeholder="Enter availability"
+              /> */}
             </div>
 
             <div>
@@ -120,18 +148,6 @@ const AddVehicle = () => {
                 required
                 className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
                 placeholder="Enter location"
-              />
-            </div>
-            <div>
-              <label className="label font-medium text-secondary-content">
-                Availability
-              </label>
-              <input
-                type="text"
-                name="availability"
-                required
-                className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
-                placeholder="Enter availability"
               />
             </div>
 
@@ -170,9 +186,9 @@ const AddVehicle = () => {
               <input
                 type="email"
                 name="email"
-                defaultValue={`${user.email}`}
+                // defaultValue={`${user.email}`}
                 className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
-                placeholder="user@example.com"
+                placeholder={`${user.email}`}
               />
             </div>
 

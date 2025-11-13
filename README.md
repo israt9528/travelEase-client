@@ -20,7 +20,7 @@ TravelEase is a modern full-stack vehicle booking platform that lets users explo
 
 ## Packages:
 
-                                                                            1."@tailwindcss/vite"
+                                                                            1."tailwindcss"
 
 2. "axios"
    3."daisyui"

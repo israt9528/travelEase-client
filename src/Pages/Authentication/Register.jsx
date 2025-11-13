@@ -43,7 +43,7 @@ const Register = () => {
       setError("Password must have an upperCase & a lowerCase character!!");
       return;
     } else if (!lengthPattern.test(password)) {
-      setError("Password length must have at least 6 characters!!");
+      setError("Password length must be at least 6 characters!!");
       return;
     }
 
@@ -82,7 +82,7 @@ const Register = () => {
   };
 
   return (
-    <div className="bg-base-200 py-30">
+    <div className="bg-base-200 py-20 px-3">
       <div className="card bg-primary w-full max-w-md shrink-0 shadow-2xl mx-auto p-5 pt-8">
         <h1 className="text-base-200  text-5xl font-bold ml-5 leading-8">
           Create{" "}

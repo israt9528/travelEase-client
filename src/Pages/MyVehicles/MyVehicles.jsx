@@ -23,7 +23,11 @@ const MyVehicles = () => {
   }
 
   if (!vehicles || vehicles.length === 0) {
-    return <p className="text-center mt-6 text-gray-500">No vehicles found.</p>;
+    return (
+      <p className="text-5xl font-bold min-h-screen flex justify-center items-center text-primary">
+        No Vehicles Found.
+      </p>
+    );
   }
 
   return (

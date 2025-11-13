@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loading from "../../Components/Loading/Loading";
 import toast from "react-hot-toast";
 
 const UpdateVehicle = () => {
+  const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const [vehicle, setVehicle] = useState([]);
@@ -12,7 +13,7 @@ const UpdateVehicle = () => {
 
   useEffect(() => {
     axiosSecure.get(`/vehicles/${id}`).then((data) => {
-      console.log(data.data);
+      // console.log(data.data);
       setVehicle(data.data);
       setLoading(false);
     });
@@ -40,10 +41,16 @@ const UpdateVehicle = () => {
     };
     // console.log(updateVehicle);
 
-    axiosSecure.put(`/vehicles/${vehicle._id}`, updateVehicle).then((data) => {
-      console.log(data.data);
-      toast.success("Your vehicle Info has been updated successfully!!");
-    });
+    axiosSecure
+      .put(`/vehicles/${vehicle._id}`, updateVehicle)
+      .then((data) => {
+        // console.log(data.data);
+        toast.success("Your vehicle Info has been updated successfully!!");
+        navigate("/all-vehicles");
+      })
+      .catch((error) => {
+        toast.error("Can't Update! Please try again.");
+      });
   };
 
   if (loading) {
