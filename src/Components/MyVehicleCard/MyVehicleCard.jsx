@@ -37,23 +37,23 @@ const MyVehicleCard = ({ vehicle }) => {
   };
 
   return (
-    <tr className="hover:bg-base-200 transition-all">
+    <tr className="bg-gray-200 hover:bg-base-200 transition-all font-semibold text-accent text-base">
       <td>
         <img
           src={coverImage}
           alt={vehicleName}
-          className="w-16 h-16 object-cover rounded-md"
+          className="w-20 h-20 object-cover rounded-md"
         />
       </td>
       <td className="font-semibold">{vehicleName}</td>
-      <td>{owner}</td>
-      <td>{category}</td>
-      <td className="text-success font-medium">${pricePerDay}</td>
-      <td className="flex flex-col sm:flex-row items-center justify-center gap-2 mt-3 sm:mt-0">
+      <td className="max-sm:hidden">{owner}</td>
+      <td className="max-sm:hidden">{category}</td>
+      <td className="max-md:hidden">${pricePerDay}</td>
+      <td className="flex flex-col lg:flex-row items-center justify-center pt-8 gap-2 mt-3 sm:mt-0">
         <Link to={`/vehicle-details/${_id}`}>
           <button
             // onClick={() => onView(vehicle)}
-            className="btn btn-sm btn-info text-white flex items-center gap-2 w-full sm:w-auto"
+            className="btn btn-sm btn-primary text-white flex items-center gap-2 w-full sm:w-auto"
           >
             <FaEye /> View Details
           </button>
@@ -61,14 +61,14 @@ const MyVehicleCard = ({ vehicle }) => {
         <Link to={`/update/${_id}`}>
           <button
             // onClick={() => onUpdate(vehicle)}
-            className="btn btn-sm btn-warning text-white flex items-center gap-2 w-full sm:w-auto"
+            className="btn btn-sm btn-accent text-white flex items-center gap-2 w-full sm:w-auto"
           >
             <FaEdit /> Update
           </button>
         </Link>
         <button
           onClick={handleDelete}
-          className="btn btn-sm btn-error text-white flex items-center gap-2 w-full sm:w-auto"
+          className="btn btn-sm btn-secondary text-white flex items-center gap-2 w-full sm:w-auto"
         >
           <FaTrashAlt /> Delete
         </button>

@@ -3,6 +3,7 @@ import { AuthContext } from "../../Context/AuthContext";
 import { NavLink, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { RiRegisteredLine } from "react-icons/ri";
 
 const Register = () => {
   const { createUser, setUser, updateUser, loginWithGoogle } = use(AuthContext);
@@ -81,10 +82,13 @@ const Register = () => {
   };
 
   return (
-    <div className="bg-[#fdfaf8] py-30">
-      <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mx-auto p-5">
-        <h1 className="text-[#4e312d]  text-5xl font-bold text-center">
-          Signup <span className="text-2xl text-[#aa9997]">for free!</span>
+    <div className="bg-base-200 py-30">
+      <div className="card bg-primary w-full max-w-md shrink-0 shadow-2xl mx-auto p-5 pt-8">
+        <h1 className="text-base-200  text-5xl font-bold ml-5 leading-8">
+          Create{" "}
+          <span className="text-2xl text-base-300">
+            your TravelEase account!
+          </span>
         </h1>
 
         <div className="card-body">
@@ -96,36 +100,36 @@ const Register = () => {
             )}
 
             <fieldset className="fieldset">
-              <label className="label">Your Name</label>
+              <label className="label text-white">Your Name</label>
               <input
                 type="text"
                 name="name"
-                className="input"
+                className="input w-full"
                 placeholder="Enter your name"
                 required
               />
-              <label className="label">Photo URL</label>
+              <label className="label text-white">Photo URL</label>
               <input
                 type="text"
                 name="photoURL"
-                className="input"
+                className="input w-full"
                 placeholder="Enter your photoURL"
                 required
               />
-              <label className="label">Email</label>
+              <label className="label text-white">Email</label>
               <input
                 type="email"
                 name="email"
-                className="input"
+                className="input w-full"
                 placeholder="Enter your email"
                 required
               />
               <div className="relative">
-                <label className="label">Password</label>
+                <label className="label text-white">Password</label>
                 <input
                   type={show ? "text" : "password"}
                   name="password"
-                  className="input"
+                  className="input w-full"
                   placeholder="Type password"
                   required
                 />
@@ -138,12 +142,12 @@ const Register = () => {
                 </button>
               </div>
 
-              <button className="btn mt-4 bg-[#4e312d] text-white">
-                SignUp
+              <button className="btn mt-4 hover:bg-white hover:text-primary text-lg font-bold bg-accent text-white">
+                <RiRegisteredLine size={18} /> Register
               </button>
               <button
                 onClick={handleLoginWithGoogle}
-                className="btn bg-white text-black border-[#e5e5e5]"
+                className="btn bg-white text-accent-content text-base border-[#e5e5e5] hover:bg-accent hover:text-white"
               >
                 <svg
                   aria-label="Google logo"
@@ -176,10 +180,10 @@ const Register = () => {
               </button>
             </fieldset>
           </form>
-          <p className="text-[#4e312d] ">
+          <p className="text-white">
             Already Have an Account? Please{" "}
             <NavLink
-              className="text-blue-500 hover:text-blue-700 hover:underline"
+              className="text-secondary hover:text-accent hover:underline"
               to="/auth/login"
             >
               Login

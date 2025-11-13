@@ -23,9 +23,11 @@ const MyBookings = () => {
   }
 
   return (
-    <div>
-      book
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+    <div className="lg:w-7xl mx-auto my-24 px-5">
+      <h1 className="text-4xl text-center font-bold mb-8 text-accent-content">
+        My TravelEase Bookings
+      </h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {vehicles.map((vehicle) => (
           <VehicleCard key={vehicle.id} vehicle={vehicle}></VehicleCard>
         ))}

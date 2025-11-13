@@ -51,16 +51,18 @@ const UpdateVehicle = () => {
   }
 
   return (
-    <div>
-      <div className="card border border-gray-200 bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
+    <div className="bg-base-200 py-20 px-3">
+      <div className="card border border-base-300 bg-base-300 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
         <div className="card-body p-6 relative">
-          <h2 className="text-2xl font-bold text-center mb-6">
-            Update vehicle data
+          <h2 className="text-4xl text-primary font-bold text-center mb-6">
+            Update Vehicle Data
           </h2>
           <form onSubmit={handleUpdate} className="space-y-4">
             {/* Name Field */}
             <div>
-              <label className="label font-medium">Vehicle Name</label>
+              <label className="label font-medium text-white">
+                Vehicle Name
+              </label>
               <input
                 type="text"
                 name="vehicleName"
@@ -73,7 +75,7 @@ const UpdateVehicle = () => {
 
             {/* Category Dropdown */}
             <div>
-              <label className="label font-medium">Category</label>
+              <label className="label font-medium text-white">Category</label>
               <select
                 // defaultValue={vehicle.category}
                 name="category"
@@ -92,7 +94,9 @@ const UpdateVehicle = () => {
             </div>
 
             <div>
-              <label className="label font-medium">Price Per Day</label>
+              <label className="label font-medium text-white">
+                Price Per Day
+              </label>
               <input
                 type="number"
                 name="price"
@@ -103,7 +107,7 @@ const UpdateVehicle = () => {
               />
             </div>
             <div>
-              <label className="label font-medium">Location</label>
+              <label className="label font-medium text-white">Location</label>
               <input
                 type="text"
                 name="location"
@@ -114,7 +118,9 @@ const UpdateVehicle = () => {
               />
             </div>
             <div>
-              <label className="label font-medium">Availability</label>
+              <label className="label font-medium text-white">
+                Availability
+              </label>
               <input
                 type="text"
                 name="availability"
@@ -127,7 +133,9 @@ const UpdateVehicle = () => {
 
             {/* Description Textarea */}
             <div>
-              <label className="label font-medium">Description</label>
+              <label className="label font-medium text-white">
+                Description
+              </label>
               <textarea
                 name="description"
                 defaultValue={vehicle.description}
@@ -140,7 +148,9 @@ const UpdateVehicle = () => {
 
             {/* Thumbnail URL */}
             <div>
-              <label className="label font-medium">Cover Image</label>
+              <label className="label font-medium text-white">
+                Cover Image
+              </label>
               <input
                 type="url"
                 name="coverImage"
@@ -154,7 +164,7 @@ const UpdateVehicle = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="btn w-full text-white mt-6 rounded-full bg-linear-to-r from-pink-500 to-red-600 hover:from-pink-600 hover:to-red-700"
+              className="btn w-full text-white mt-6 rounded-full btn-primary hover:bg-base-300 hover:text-primary "
             >
               Update Vehicle
             </button>

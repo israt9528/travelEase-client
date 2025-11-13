@@ -23,7 +23,7 @@ const owners = [
 
 const Owners = () => {
   return (
-    <section className="py-16 bg-linear-to-b from-gray-900 to-black text-white">
+    <section className="py-16 bg-linear-to-b from-gray-900 to-black ">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
@@ -31,11 +31,11 @@ const Owners = () => {
         transition={{ duration: 0.6 }}
         className="text-center mb-12 px-6"
       >
-        <h2 className="text-4xl md:text-5xl font-bold text-blue-400 mb-4">
+        <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
           Meet Our Trusted Car Owners
         </h2>
-        <p className="text-gray-300 max-w-2xl mx-auto">
-          At <span className="font-semibold text-blue-300">Travel Ease</span>,
+        <p className="text-primary-content max-w-2xl mx-auto">
+          At <span className="font-semibold text-secondary">TravelEase</span>,
           we partner with passionate car owners who ensure your journeys are
           smooth, safe, and comfortable.
         </p>
@@ -49,7 +49,7 @@ const Owners = () => {
             initial={{ opacity: 0, scale: 0.8, y: 30 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.2 }}
-            className="bg-white text-gray-900 rounded-2xl shadow-lg overflow-hidden w-full sm:w-80 hover:shadow-blue-500/40 transition-shadow duration-300"
+            className="bg-white rounded-2xl shadow-lg overflow-hidden w-full sm:w-80 hover:shadow-blue-500/40 transition-shadow duration-300"
           >
             <img
               src={owner.img}
@@ -57,19 +57,19 @@ const Owners = () => {
               className="w-full h-64 object-cover"
             />
             <div className="p-6 text-center">
-              <h3 className="text-xl font-bold text-blue-600 mb-1">
+              <h3 className="text-xl font-bold text-accent-content mb-1">
                 {owner.name}
               </h3>
-              <p className="text-gray-500 mb-4">{owner.role}</p>
+              <p className="text-accent mb-4">{owner.role}</p>
               <div className="flex justify-center gap-4 text-blue-500 text-xl">
                 <a href="#">
-                  <FaXTwitter className="hover:text-blue-400 transition" />
+                  <FaXTwitter className="hover:text-accent-content transition" />
                 </a>
                 <a href="#">
-                  <FaFacebook className="hover:text-blue-400 transition" />
+                  <FaFacebook className="hover:text-accent-content transition" />
                 </a>
                 <a href="#">
-                  <FaInstagram className="hover:text-blue-400 transition" />
+                  <FaInstagram className="hover:text-accent-content transition" />
                 </a>
               </div>
             </div>

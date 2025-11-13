@@ -3,6 +3,7 @@ import { AuthContext } from "../../Context/AuthContext";
 import { Link, NavLink, useLocation, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { IoLogIn } from "react-icons/io5";
 
 const Login = () => {
   const { userLogin, loginWithGoogle, setUser } = use(AuthContext);
@@ -60,11 +61,13 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-[#fdfaf8] py-30">
-      <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mx-auto p-5">
-        <h1 className="text-[#4e312d] text-5xl font-bold text-center">
-          Login{" "}
-          <span className="text-2xl text-[#aa9997]">to your account!</span>
+    <div className="bg-base-200 py-30">
+      <div className="card bg-primary w-full max-w-md shrink-0 shadow-2xl mx-auto p-5 pt-8">
+        <h1 className="text-base-200 text-5xl font-bold text-center leading-8">
+          Welcome Back!{" "}
+          <span className="text-2xl text-base-300">
+            Please Login to Continue.
+          </span>
         </h1>
 
         <div className="card-body">
@@ -76,20 +79,20 @@ const Login = () => {
             )}
 
             <fieldset className="fieldset">
-              <label className="label">Email</label>
+              <label className="label text-white">Email</label>
               <input
                 type="email"
                 name="email"
                 onChange={(e) => setEmail(e.target.value)}
-                className="input"
+                className="input w-full"
                 placeholder="Enter your email"
               />
               <div className="relative">
-                <label className="label">Password</label>
+                <label className="label text-white">Password</label>
                 <input
                   type={show ? "text" : "password"}
                   name="password"
-                  className="input"
+                  className="input w-full"
                   placeholder="Type password"
                 />
 
@@ -104,17 +107,17 @@ const Login = () => {
                 <Link
                   // to="/forgetPassword"
                   state={{ email }}
-                  className="link link-hover text-[#4e312d] "
+                  className="link link-hover text-white"
                 >
                   Forgot password?
                 </Link>
               </div>
-              <button className="btn mt-4 bg-[#4e312d] text-white">
-                Login
+              <button className="btn mt-4 text-lg font-bold btn-accent text-white hover:text-accent-content hover:bg-white">
+                <IoLogIn size={18} /> Login
               </button>
               <button
                 onClick={handleLoginWithGoogle}
-                className="btn bg-white text-black border-[#e5e5e5]"
+                className="btn bg-white text-accent-content text-base border-[#e5e5e5] hover:bg-accent hover:text-white"
               >
                 <svg
                   aria-label="Google logo"
@@ -148,10 +151,10 @@ const Login = () => {
             </fieldset>
           </form>
 
-          <p className="text-[#4e312d] ">
+          <p className="text-white">
             New to our website? Please{" "}
             <NavLink
-              className="text-blue-500 hover:text-blue-700 hover:underline"
+              className="text-secondary hover:text-accent hover:underline"
               to="/auth/register"
             >
               Register

@@ -14,6 +14,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { img } from "framer-motion/client";
 import { Link } from "react-router";
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 export default function HeroSlider() {
   const slides = [banner1, banner2, banner3, banner4, banner5];
@@ -46,20 +47,23 @@ export default function HeroSlider() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               viewport={{ once: false, amount: 0.2 }}
             >
-              <h1 className="text-[#f6ddc6]  text-5xl md:text-6xl font-bold mb-4">
-                “Explore Your Journey with Ease”
+              <h1 className="text-[#64B5F6] text-4xl md:text-6xl font-bold mb-4">
+                “Explore Your Journey with{" "}
+                <span className="text-white">Ease</span>”
               </h1>
-              <p className="text-[#fcd5b1] text-lg md:text-xl mb-3 lg:w-[65%]">
+              <p className="text-secondary-accent text-base md:text-xl mb-3 lg:w-[65%]">
                 Discover a seamless way to explore and rent vehicles for your
                 next trip. Whether you’re planning a weekend getaway or listing
                 your own car for rent, our platform makes it effortless.
               </p>
-              <p className="font-semibold text-accent mb-4">
+              <p className="font-semibold mb-4 text-white">
                 {format(new Date(), "EEEE, MMMM MM, yyyy")}{" "}
               </p>
-              <button className="btn">
-                <Link to="/all-vehicles">All Vehicles</Link>
-              </button>
+              <Link to="/all-vehicles">
+                <button className=" btn bg-black/20 border-base-200 border-2  text-lg ml-3 text-secondary hover:text-primary hover:bg-base-200">
+                  All Vehicles <FaArrowUpRightFromSquare size={14} />
+                </button>
+              </Link>
             </motion.div>
           </div>
         </SwiperSlide>

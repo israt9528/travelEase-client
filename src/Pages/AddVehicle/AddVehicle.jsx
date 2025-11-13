@@ -43,14 +43,18 @@ const AddVehicle = () => {
   };
 
   return (
-    <div>
-      <div className="card border border-gray-200 bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
+    <div className="bg-base-200 py-24 px-3">
+      <div className="card border border-gray-300 bg-base-300 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
         <div className="card-body p-6 relative">
-          <h2 className="text-2xl font-bold text-center mb-6">Add New Model</h2>
+          <h2 className="text-3xl font-bold text-center mb-6 text-primary">
+            Add Vehicle for Rent
+          </h2>
           <form onSubmit={handleAddVehicle} className="space-y-4">
             {/* Name Field */}
             <div>
-              <label className="label font-medium">Vehicle Name</label>
+              <label className="label font-medium text-secondary-content">
+                Vehicle Name
+              </label>
               <input
                 type="text"
                 name="vehicleName"
@@ -60,7 +64,9 @@ const AddVehicle = () => {
               />
             </div>
             <div>
-              <label className="label font-medium">Owner Name</label>
+              <label className="label font-medium text-secondary-content">
+                Owner Name
+              </label>
               <input
                 type="text"
                 name="ownerName"
@@ -72,7 +78,9 @@ const AddVehicle = () => {
 
             {/* Category Dropdown */}
             <div>
-              <label className="label font-medium">Category</label>
+              <label className="label font-medium text-secondary-content">
+                Category
+              </label>
               <select
                 defaultValue={""}
                 name="category"
@@ -91,7 +99,9 @@ const AddVehicle = () => {
             </div>
 
             <div>
-              <label className="label font-medium">Price Per Day</label>
+              <label className="label font-medium text-secondary-content">
+                Price Per Day
+              </label>
               <input
                 type="number"
                 name="price"
@@ -101,7 +111,9 @@ const AddVehicle = () => {
               />
             </div>
             <div>
-              <label className="label font-medium">Location</label>
+              <label className="label font-medium text-secondary-content">
+                Location
+              </label>
               <input
                 type="text"
                 name="location"
@@ -111,7 +123,9 @@ const AddVehicle = () => {
               />
             </div>
             <div>
-              <label className="label font-medium">Availability</label>
+              <label className="label font-medium text-secondary-content">
+                Availability
+              </label>
               <input
                 type="text"
                 name="availability"
@@ -123,7 +137,9 @@ const AddVehicle = () => {
 
             {/* Description Textarea */}
             <div>
-              <label className="label font-medium">Description</label>
+              <label className="label font-medium text-secondary-content">
+                Description
+              </label>
               <textarea
                 name="description"
                 required
@@ -135,7 +151,9 @@ const AddVehicle = () => {
 
             {/* Thumbnail URL */}
             <div>
-              <label className="label font-medium">Cover Image</label>
+              <label className="label font-medium text-secondary-content">
+                Cover Image
+              </label>
               <input
                 type="url"
                 name="coverImage"
@@ -146,7 +164,9 @@ const AddVehicle = () => {
             </div>
 
             <div>
-              <label className="label font-medium">User Email</label>
+              <label className="label font-medium text-secondary-content">
+                User Email
+              </label>
               <input
                 type="email"
                 name="email"
@@ -159,7 +179,7 @@ const AddVehicle = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="btn w-full text-white mt-6 rounded-full bg-linear-to-r from-pink-500 to-red-600 hover:from-pink-600 hover:to-red-700"
+              className="btn w-full rounded-3xl text-base font-bold btn-primary hover:bg-base-300 hover:text-primary text-white"
             >
               Add Vehicle
             </button>

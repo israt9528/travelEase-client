@@ -1,3 +1,10 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Sans:wght@200..800&display=swap');
+
+
+
+
 @import "tailwindcss";
 @plugin "daisyui"{
   themes: light --default, dark --prefersdark;
@@ -7,16 +14,28 @@
   default: true;
    prefersdark: true; 
   --color-primary: #194a7a;
-  --color-secondary: #D72050;
+  --color-secondary: #64B5F6;
+  --color-primary-content: #7593af;
+  --color-secondary-content: #476f95;
+
   --color-base-200: #d1dbe4;
   --color-base-300: #a3b7ca;
-  --color-accent: rgba(159, 159, 159, 1);
+
+
+  --color-accent: #4583bb;
+  --color-accent-content: #003082;
 }
 
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+h1, h2,h3,h4,h5,h6,th {
+   font-family: "Merriweather", serif;
+}
 
+p, a, button , span, tr{
+  font-family: "Momo Trust Sans", sans-serif;
+}
 
 .navbar .active {
   color: #194a7a;
@@ -25,3 +44,9 @@
   border-radius: 20px;
   background: #d1dbe4;
 }
+.navbar li:hover {
+  color: #194a7a;
+  background-color: #d1dbe4;
+  border-radius: 5px
+}
+

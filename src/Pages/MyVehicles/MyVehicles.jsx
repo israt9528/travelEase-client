@@ -27,22 +27,28 @@ const MyVehicles = () => {
   }
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">My Vehicles</h1>
+    <div className="py-24 lg:w-7xl mx-auto px-5">
+      <h1 className="text-4xl md:text-5xl text-center font-bold mb-3 text-primary">
+        My TravelEase Fleet
+      </h1>
+      <p className="text-base md:text-lg lg:w-[80%] mx-auto font-medium text-accent text-center mb-5">
+        Welcome to your TravelEase Garage, where you can manage your vehicles,
+        update trip details, and keep your rides ready for booking
+      </p>
 
-      <div className="w-full overflow-x-auto my-4">
-        <table className="table w-full bg-base-100 shadow-md rounded-xl">
-          <thead className="bg-gray-100">
-            <tr className="text-left text-gray-600">
+      <div className=" lg:overflow-x-auto py-4">
+        <table className="table bg-base-200 shadow-md rounded-xl">
+          <thead className="bg-base-300 ">
+            <tr className="text-left text-primary text-lg">
               <th>Image</th>
               <th>Vehicle Name</th>
-              <th>Owner</th>
-              <th>Category</th>
-              <th>Price / Day</th>
+              <th className="max-sm:hidden">Owner</th>
+              <th className="max-sm:hidden">Category</th>
+              <th className="max-md:hidden">Price/Day</th>
               <th className="text-center">Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="">
             {vehicles.map((vehicle) => (
               <MyVehicleCard
                 key={vehicle._id}

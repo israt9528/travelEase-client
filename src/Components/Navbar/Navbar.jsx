@@ -8,12 +8,18 @@ import { FaGear } from "react-icons/fa6";
 import { IoLogIn, IoLogOut } from "react-icons/io5";
 import { RiRegisteredLine } from "react-icons/ri";
 import logo from "../../assets/logo2.jpg";
+import {
+  MdDarkMode,
+  MdLightMode,
+  MdOutlineDarkMode,
+  MdOutlineLightMode,
+} from "react-icons/md";
 
 const Navbar = ({ isHome }) => {
   const { user, userLogout } = use(AuthContext);
 
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-
+  const [dark, setDark] = useState(false);
   useEffect(() => {
     const html = document.querySelector("html");
     html.setAttribute("data-theme", theme);
@@ -22,6 +28,7 @@ const Navbar = ({ isHome }) => {
 
   const handleTheme = (checked) => {
     setTheme(checked ? "dark" : "light");
+    setDark(!dark);
   };
 
   const handleLogout = () => {
@@ -59,10 +66,8 @@ const Navbar = ({ isHome }) => {
 
   return (
     <div
-      className={`absolute top-0 left-0 w-full z-20 flex items-center justify-between lg:px-8 transition-all duration-300 ${
-        isHome
-          ? "bg-black/30  text-white"
-          : "bg-base-100 text-gray-800 shadow-md"
+      className={`fixed text-white top-0 left-0 w-full z-20 flex items-center justify-between lg:px-8 transition-all duration-300 ${
+        isHome ? " bg-black/30 " : " bg-black/25 shadow-md"
       }`}
     >
       <div className="navbar ">
@@ -96,7 +101,7 @@ const Navbar = ({ isHome }) => {
                   {user ? (
                     <button
                       onClick={handleLogout}
-                      className="btn btn-xs text-left bg-linear-to-r from-pink-500 to-red-500 text-white"
+                      className="btn rounded-full btn-xs bg-primary-content text-white hover:text-primary hover:bg-base-200"
                     >
                       <IoLogOut /> Logout
                     </button>
@@ -104,14 +109,14 @@ const Navbar = ({ isHome }) => {
                     <div className="flex flex-col">
                       <Link
                         to={"/auth/login"}
-                        className="btn rounded-full border-gray-300  btn-sm bg-linear-to-r from-pink-500 to-red-500 text-white"
+                        className="btn rounded-full btn-xs bg-primary-content text-white hover:text-primary hover:bg-base-200"
                       >
                         {" "}
                         <IoLogIn /> Login
                       </Link>
                       <Link
                         to="/auth/register"
-                        className="btn rounded-full border-gray-300  btn-sm bg-linear-to-r from-pink-500 to-red-500 text-white"
+                        className="btn rounded-full btn-xs bg-primary-content text-white hover:text-primary hover:bg-base-200"
                       >
                         {" "}
                         <RiRegisteredLine /> Register
@@ -125,7 +130,7 @@ const Navbar = ({ isHome }) => {
           <div className="flex items-center text-3xl font-bold text-white gap-1.5">
             <img src={logo} alt="" className="w-12 h-12 rounded-full" />
             <p>
-              Travel<span className="text-primary">Ease</span>
+              Travel<span className="text-secondary">Ease</span>
             </p>
           </div>
         </div>
@@ -137,12 +142,22 @@ const Navbar = ({ isHome }) => {
 
         <div className="navbar-end">
           <div className=" items-center gap-2 flex">
-            <input
-              onChange={(e) => handleTheme(e.target.checked)}
-              type="checkbox"
-              defaultChecked={localStorage.getItem("theme") === "dark"}
-              className="toggle"
-            />
+            <div className="">
+              <button className="relative top-1.5 right-1">
+                {dark ? (
+                  <MdLightMode size={20} />
+                ) : (
+                  <MdOutlineDarkMode size={20} />
+                )}
+              </button>
+
+              <input
+                onChange={(e) => handleTheme(e.target.checked)}
+                type="checkbox"
+                defaultChecked={localStorage.getItem("theme") === "dark"}
+                className="toggle bg-base-100"
+              />
+            </div>
 
             <div>
               {user ? (
@@ -165,17 +180,35 @@ const Navbar = ({ isHome }) => {
               {user ? (
                 <button
                   onClick={handleLogout}
-                  className="btn text-lg ml-3 bg-[#da945a] text-white"
+                  className={`btn text-lg ml-3 ${
+                    isHome
+                      ? "bg-black/5 text-secondary border-base-200 hover:text-primary hover:bg-base-200"
+                      : "hover:bg-primary hover:text-white text-accent-content bg-white border-primary"
+                  }`}
                 >
                   <IoLogOut /> Logout
                 </button>
               ) : (
-                <div className="space-x-1">
-                  <Link to="/auth/login" className="btn">
-                    <IoLogIn /> Login
+                <div className="">
+                  <Link
+                    to="/auth/login"
+                    className={`btn text-lg ml-3 ${
+                      isHome
+                        ? "bg-black/5 text-secondary border-base-200 hover:text-primary hover:bg-base-200"
+                        : "hover:bg-primary hover:text-white text-accent-content bg-white border-primary"
+                    }`}
+                  >
+                    <IoLogIn size={18} /> Login
                   </Link>
-                  <Link to="/auth/register" className="btn">
-                    <RiRegisteredLine /> Register
+                  <Link
+                    to="/auth/register"
+                    className={`btn text-lg ml-3 ${
+                      isHome
+                        ? "bg-black/5 text-secondary border-base-200 hover:text-primary hover:bg-base-200"
+                        : "hover:bg-primary hover:text-white text-accent-content bg-white border-primary"
+                    }`}
+                  >
+                    <RiRegisteredLine size={18} /> Register
                   </Link>
                 </div>
               )}

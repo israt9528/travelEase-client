@@ -34,7 +34,7 @@ const features = [
 
 const AboutUs = () => {
   return (
-    <section className="py-16 px-4 bg-gray-50 mt-10">
+    <section className="py-20 px-4 bg-base-200">
       {/* Title */}
       <motion.div
         initial={{ opacity: 0, y: -40 }}
@@ -43,13 +43,14 @@ const AboutUs = () => {
         viewport={{ once: false, amount: 0.2 }}
         className="text-center mb-10"
       >
-        <h2 className="text-4xl font-bold text-gray-800">
-          Drive Your Dreams with TravelEase
+        <h2 className="text-4xl md:text-5xl font-bold text-accent-content">
+          Drive Your Dreams with{" "}
+          <span className="text-secondary">TravelEase</span>
         </h2>
-        <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-          TravelEase makes every journey effortless and enjoyable. With a fleet
-          of premium vehicles, transparent pricing, and a seamless booking
-          experience.
+        <p className="mt-4 text-base md:text-lg text-accent max-w-2xl mx-auto ">
+          <span className="text-secondary">TravelEase</span> makes every journey
+          effortless and enjoyable. With a fleet of premium vehicles,
+          transparent pricing, and a seamless booking experience.
         </p>
       </motion.div>
 
@@ -75,10 +76,12 @@ const AboutUs = () => {
             <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/80 transition duration-300"></div>
 
             {/* Content */}
-            <div className="absolute bottom-4 left-4 text-white">
+            <div className="absolute bottom-4 left-4 bg-black/60 p-3 rounded-xl">
               <span className="text-3xl">{item.icon}</span>
-              <h3 className="text-xl font-semibold mt-2">{item.title}</h3>
-              <p className="text-sm text-gray-200">{item.desc}</p>
+              <h3 className="text-xl font-semibold mt-2 text-secondary">
+                {item.title}
+              </h3>
+              <p className="text-sm text-white">{item.desc}</p>
             </div>
           </motion.div>
         ))}
