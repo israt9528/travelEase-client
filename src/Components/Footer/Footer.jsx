@@ -3,7 +3,6 @@ import { MdEmail } from "react-icons/md";
 import { FaFacebook, FaInstagram, FaPhoneAlt, FaTwitter } from "react-icons/fa";
 import { FaLocationDot, FaXTwitter } from "react-icons/fa6";
 import logo from "../../assets/logo2.jpg";
-import footerbg from "../../assets/footerbg.jpeg";
 
 const Footer = () => {
   return (

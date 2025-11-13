@@ -1,10 +1,12 @@
 import React from "react";
 import Navbar from "../Components/Navbar/Navbar";
-import { Outlet, useLocation } from "react-router";
+import { Outlet, useLocation, useNavigation } from "react-router";
 import Footer from "../Components/Footer/Footer";
 import { Toaster } from "react-hot-toast";
+import Loading from "../Components/Loading/Loading";
 
 const MainLayout = () => {
+  const { state } = useNavigation();
   const location = useLocation();
   const isHome = location.pathname === "/";
 
@@ -12,8 +14,9 @@ const MainLayout = () => {
     <div>
       <div className="relative min-h-screen">
         <Navbar isHome={isHome}></Navbar>
-
-        <Outlet></Outlet>
+        <section>
+          {state === "loading" ? <Loading></Loading> : <Outlet></Outlet>}
+        </section>
       </div>
       <Footer></Footer>
       <Toaster></Toaster>
