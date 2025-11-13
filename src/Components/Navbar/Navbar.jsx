@@ -3,9 +3,11 @@ import { Link } from "react-router";
 import { NavLink } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import toast from "react-hot-toast";
-import { FaUser, FaUserCircle } from "react-icons/fa";
-import { FaGear } from "react-icons/fa6";
+import { FaCarSide, FaHome, FaUser, FaUserCircle } from "react-icons/fa";
+import { FaCarRear, FaGear } from "react-icons/fa6";
 import { IoLogIn, IoLogOut } from "react-icons/io5";
+import { BsCartPlusFill } from "react-icons/bs";
+import { TbBrandBooking } from "react-icons/tb";
 import { RiRegisteredLine } from "react-icons/ri";
 import logo from "../../assets/logo2.jpg";
 import {
@@ -47,19 +49,34 @@ const Navbar = ({ isHome }) => {
   const links = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/">
+          <FaHome />
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/all-vehicles">All Vehicles</NavLink>
+        <NavLink to="/all-vehicles">
+          <FaCarSide />
+          All Vehicles
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/add-vehicle">Add Vehicle</NavLink>
+        <NavLink to="/add-vehicle">
+          <BsCartPlusFill />
+          Add Vehicle
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/my-vehicles">My Vehicles</NavLink>
+        <NavLink to="/my-vehicles">
+          <FaCarRear />
+          My Vehicles
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/my-bookings">My Bookings</NavLink>
+        <NavLink to="/my-bookings">
+          <TbBrandBooking />
+          My Bookings
+        </NavLink>
       </li>
     </>
   );
@@ -135,7 +152,7 @@ const Navbar = ({ isHome }) => {
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-base font-medium">
+          <ul className="menu menu-horizontal px-1 text-sm font-medium">
             {links}
           </ul>
         </div>
