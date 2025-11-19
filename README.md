@@ -1,23 +1,9 @@
 # Project Name  
-TravelEase
+## TravelEase
 
 ---
 
-## Table of Contents
 
-- [About the Project](#about-the-project)
-- [Project Overview](#project-overview)
-- [Key Features](#key-features)
-- [Tech Stack](#tech-stack)
-- [Dependencies](#dependencies)
-- [Installation️ & Setup](#installation--setup)
-- [Folder Structure](#folder-structure)
-- [Contributions](#contributions)
-- [How to Contribute](#how-to-contribute)
-- [License](#license)
-- [Contact](#contact)
-
----
 
 ## About the Project 
 TravelEase is a modern full-stack vehicle booking platform that lets users explore, add, and manage vehicles for rent or travel purposes. It offers a seamless experience where users can list their own vehicles, view detailed car information, and book rides effortlessly. Built with the MERN stack and integrated with Firebase Authentication, TravelEase ensures secure access, real-time data management, and a smooth, responsive interface. Whether you’re renting or listing, TravelEase makes your travel experience easier, smarter, and faster.
@@ -25,8 +11,9 @@ TravelEase is a modern full-stack vehicle booking platform that lets users explo
 ---
 
 ## Project Overview  
-Summarize the project objectives, key metrics, and any relevant statistics.  
-You can also include a diagram or screenshot.
+TravelEase is a modern full-stack vehicle booking platform designed to make renting, listing, and managing vehicles effortless. Built with the MERN stack and secured with Firebase Authentication, the app allows users to explore a wide range of vehicles, view detailed information, and place booking requests with ease.
+
+<img src="https://i.ibb.co.com/QZb14h9/Capture-1.png"/>
 
 ---
 
@@ -90,16 +77,16 @@ You can also include a diagram or screenshot.
 1. Clone the repo and install dependencies:
 
 ```bash
-git clone https://github.com/touhidcodes/Resume-Craft
-cd resume-craft
+https://github.com/israt9528/travelEase-client.git
+cd travelEase-client.git
 npm install
 ```
 
 2. Set up environment variables by creating a `.env` file in the root directory:
 
 ```env
-DATABASE_URL=your_database_url
-JWT_SECRET=your_jwt_secret
+DATABASE_URL=https://cloud.mongodb.com/v2/6901c9d604bf5e2e01585034#/metrics/replicaSet/6901ca43c34f841b47f2374d/explorer/travelEase_db
+
 ```
 
 3. Run the application:
@@ -118,44 +105,19 @@ your-project/
 ├── src/
 │   ├── components/
 │   ├── pages/
-│   ├── utils/
+│   ├── layout/
 │   └── hooks/
 ├── public/
 └── package.json
 ```
 
----
-
-## Contributions (Optional)
-If this is a team project, mention contributors.
-
-| Name            | Role                | Contributions                            |  
-|-----------------|---------------------|------------------------------------------|  
-| Member-1        | Role                | Contributions                            |  
-| Member-2        | Role                | Contributions                            |  
-
----
-
-## How to Contribute (Optional)
-
-  - Fork the Project
-  - Create a branch (`git checkout -b feature/AmazingFeature`)
-  - Commit changes (`git commit -m 'Add some AmazingFeature'`)
-  - Push the branch (`git push origin feature/AmazingFeature`)
-  - Open a Pull Request
-
----
-
-## License (Optional)
-Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ---
 
 ## Contact
 
-**Live URL:** [Live Site](https://yourdomain.com/)
-**Email:** [username](your-email@example.com)
-**Portfolio:** [Portfolio](https://yourportfolio.com)
+**Live URL:** [Live Site](https://travel-ease-eaca9.web.app)
+**Email:** [username](israt9528@gmail.com)
 
 
 
@@ -167,39 +129,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 
 
-# Project Name: TravelEase
 
-# Live URL: https://travel-ease-eaca9.web.app
 
-## description:
 
-TravelEase is a modern full-stack vehicle booking platform that lets users explore, add, and manage vehicles for rent or travel purposes. It offers a seamless experience where users can list their own vehicles, view detailed car information, and book rides effortlessly. Built with the MERN stack and integrated with Firebase Authentication, TravelEase ensures secure access, real-time data management, and a smooth, responsive interface. Whether you’re renting or listing, TravelEase makes your travel experience easier, smarter, and faster.
-
-## Features:
-
-1.Users can add, update, and delete their own vehicle listings with full CRUD functionality, ensuring complete control over their rentals
-
-2.Authenticated users get a personalized experience with “My Vehicles” and “My Bookings” pages, showing only their added cars and booked rides.
-
-3.All vehicle and booking information is stored and fetched in real time, ensuring fast and reliable data handling across the web.
-
-4.Each vehicle has a dedicated details page with full information, high-quality images, and a “Book Now” button to store booking data instantly.
-
-5.The web provides a smooth user experience with real-time toast alerts for actions like add, update, or delete, and confirmation modals for safer data handling.
-
-## Packages:
-
-                                                                            1."tailwindcss"
-
-2. "axios"
-   3."daisyui"
-   4."date-fns"
-   5."firebase"
-   6."framer-motion"
-   7."react"
-   8."react-dom"
-   9."react-hot-toast"
-3. "react-icons"
-4. "react-router"
-5. "sweetalert2"
-6. "swiper"
