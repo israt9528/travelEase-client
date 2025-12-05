@@ -29,12 +29,34 @@ const VehicleDetails = () => {
   }, [id, axiosSecure]);
 
   const handleBooked = () => {
-    axiosSecure
-      .post("/my-bookings", { ...vehicle, bookedBy: user.email })
-      .then((data) => {
-        // console.log(data.data);
+    const {
+      vehicleName,
+      owner,
+      category,
+      pricePerDay,
+      location,
+      availability,
+      description,
+      coverImage,
+    } = vehicle;
+
+    const bookedVehicle = {
+      vehicleName,
+      owner,
+      category,
+      pricePerDay,
+      location,
+      availability,
+      description,
+      coverImage,
+      bookedBy: user.email,
+      bookedAt: new Date(),
+    };
+    axiosSecure.post("/my-bookings", bookedVehicle).then((res) => {
+      if (res.data.insertedId) {
         toast.success("Thanks for Booking!");
-      });
+      }
+    });
   };
 
   if (loading) {

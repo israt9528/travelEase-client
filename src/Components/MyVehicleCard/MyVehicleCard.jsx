@@ -6,7 +6,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 
 const MyVehicleCard = ({ vehicle }) => {
-  const { _id, vehicleName, owner, category, pricePerDay, coverImage } =
+  const { _id, vehicleName, bookedBy, category, pricePerDay, coverImage } =
     vehicle;
 
   const axiosSecure = useAxiosSecure();
@@ -46,7 +46,7 @@ const MyVehicleCard = ({ vehicle }) => {
         />
       </td>
       <td className="font-semibold">{vehicleName}</td>
-      <td className="max-sm:hidden">{owner}</td>
+      <td className="max-sm:hidden">{bookedBy}</td>
       <td className="max-sm:hidden">{category}</td>
       <td className="max-md:hidden">${pricePerDay}</td>
       <td className="flex flex-col lg:flex-row items-center justify-center pt-8 gap-2 mt-3 sm:mt-0">
