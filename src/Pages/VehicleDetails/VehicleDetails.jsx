@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import Loading from "../../Components/Loading/Loading";
 import { motion } from "framer-motion";
 
@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import { FaArrowLeft } from "react-icons/fa6";
 
 const VehicleDetails = () => {
   const axiosSecure = useAxiosSecure();
@@ -66,6 +67,17 @@ const VehicleDetails = () => {
   return (
     <div className="">
       <div className="max-w-5xl mx-auto px-4 my-30 ">
+        <h1 className="text-4xl md:text-5xl text-center font-bold mb-10 text-primary">
+          Vehicle Details
+        </h1>
+
+        <Link
+          to="/all-vehicles"
+          className="flex items-center font-bold gap-1 text-primary mb-5 ml-2 hover:-translate-x-2"
+        >
+          <FaArrowLeft></FaArrowLeft>
+          Back
+        </Link>
         <div className="bg-[#f1fffe] shadow-xl rounded-2xl overflow-hidden flex flex-col md:flex-row">
           {/* Image Section */}
 

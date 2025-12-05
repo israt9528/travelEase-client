@@ -27,7 +27,7 @@ export default function HeroSlider() {
       pagination={{ clickable: true }}
       autoplay={{ delay: 3000 }}
       loop
-      className="w-full h-screen relative inset-0 -z-10"
+      className="w-full h-full relative inset-0 -z-10 "
     >
       {slides.map((img, index) => (
         <SwiperSlide key={index}>

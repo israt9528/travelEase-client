@@ -7,21 +7,28 @@ const AllVehicles = () => {
   const [loading, setLoading] = useState(true);
   const axiosInstance = useAxios();
   const [vehicles, setVehicles] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   useEffect(() => {
     axiosInstance.get("/vehicles").then((data) => {
-      // console.log(data.data);
       setVehicles(data.data);
       setLoading(false);
     });
   }, [axiosInstance]);
 
   if (loading) {
-    return <Loading></Loading>;
+    return <Loading />;
   }
 
+  const categories = ["All", ...new Set(vehicles.map((v) => v.category))];
+
+  const filteredVehicles =
+    selectedCategory === "All"
+      ? vehicles
+      : vehicles.filter((v) => v.category === selectedCategory);
+
   return (
-    <div className="lg:w-7xl mx-auto text-center mb-14 mt-20 p-5">
+    <div className="lg:w-7xl mx-auto text-center mb-14 mt-25 p-5">
       <h1 className="text-4xl md:text-5xl font-bold text-accent-content mb-3">
         “Choose the <span className="text-secondary">Perfect</span> one for
         Every Journey”
@@ -33,9 +40,26 @@ const AllVehicles = () => {
         stress-free. Book instantly, manage your trips easily, and hit the road
         with confidence.
       </p>
-      <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
-        {vehicles.map((vehicle) => (
-          <VehicleCard key={vehicle._id} vehicle={vehicle}></VehicleCard>
+
+      <div className="flex justify-center gap-4 mb-6 mt-10 flex-wrap">
+        {categories.map((category) => (
+          <button
+            key={category}
+            className={`px-4 py-2 rounded ${
+              selectedCategory === category
+                ? "bg-secondary text-white"
+                : "bg-gray-200"
+            }`}
+            onClick={() => setSelectedCategory(category)}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center mt-14">
+        {filteredVehicles.map((vehicle) => (
+          <VehicleCard key={vehicle._id} vehicle={vehicle} />
         ))}
       </div>
     </div>

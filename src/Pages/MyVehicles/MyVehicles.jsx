@@ -31,9 +31,9 @@ const MyVehicles = () => {
   }
 
   return (
-    <div className="py-24 lg:w-7xl mx-auto px-5">
+    <div className="py-26 lg:w-7xl mx-auto px-5">
       <h1 className="text-4xl md:text-5xl text-center font-bold mb-3 text-primary">
-        My TravelEase Fleet
+        My Travel<span className="text-secondary">Ease</span> Fleet
       </h1>
       <p className="text-base md:text-lg lg:w-[80%] mx-auto font-medium text-accent text-center mb-5">
         Welcome to your TravelEase Garage, where you can manage your vehicles,

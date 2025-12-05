@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import Loading from "../../Components/Loading/Loading";
-import VehicleCard from "../../Components/VehicleCard/VehicleCard";
-import { FaTrashAlt } from "react-icons/fa";
 import { SiTicktick } from "react-icons/si";
+import { MdOutlineCancel } from "react-icons/md";
 import Swal from "sweetalert2";
 
 const MyBookings = () => {
@@ -66,13 +65,15 @@ const MyBookings = () => {
   };
 
   return (
-    <div className="py-24 lg:w-7xl mx-auto px-5">
+    <div className="py-26 lg:w-7xl mx-auto px-5">
       <h1 className="text-4xl md:text-5xl text-center font-bold mb-3 text-primary">
         My Bookings Collection
       </h1>
       <p className="text-base md:text-lg lg:w-[80%] mx-auto font-medium text-accent text-center mb-5">
-        Welcome to your TravelEase Garage, where you can manage your vehicles,
-        update trip details, and keep your rides ready for booking
+        Manage your travel plans effortlessly with the TraveLease Booking
+        Section. Here, users can easily view, confirm, or cancel their bookings
+        with just a few clicks. Enjoy a smooth experience with clear details on
+        trip schedules, pricing, and availability.
       </p>
 
       <div className=" lg:overflow-x-auto py-4">
@@ -82,9 +83,9 @@ const MyBookings = () => {
               <th>Image</th>
               <th>Vehicle Name</th>
               <th className="max-sm:hidden">Category</th>
-              <th className="max-sm:hidden">Booked By</th>
+              <th className="max-md:hidden">Booked By</th>
 
-              <th className="max-md:hidden">Booked At</th>
+              <th className="max-lg:hidden">Booked At</th>
               <th className="text-center">Actions</th>
             </tr>
           </thead>
@@ -103,9 +104,9 @@ const MyBookings = () => {
                 </td>
                 <td className="font-semibold">{vehicle.vehicleName}</td>
                 <td className="max-sm:hidden">{vehicle.category}</td>
-                <td className="max-sm:hidden">{vehicle.bookedBy}</td>
+                <td className="max-md:hidden">{vehicle.bookedBy}</td>
 
-                <td className="max-md:hidden">
+                <td className="max-lg:hidden">
                   {new Date(vehicle.bookedAt).toLocaleString()}
                 </td>
                 <td className="flex flex-col lg:flex-row items-center justify-center pt-8 gap-2 mt-3 sm:mt-0">
@@ -119,7 +120,7 @@ const MyBookings = () => {
                     onClick={() => handleBookingReqDelete(vehicle._id)}
                     className="btn btn-sm btn-secondary text-white flex items-center gap-2 w-full sm:w-auto"
                   >
-                    <FaTrashAlt /> Delete
+                    <MdOutlineCancel size={18} /> Cancel
                   </button>
                 </td>
               </tr>
