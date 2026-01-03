@@ -3,14 +3,15 @@ import { MdEmail } from "react-icons/md";
 import { FaFacebook, FaInstagram, FaPhoneAlt, FaTwitter } from "react-icons/fa";
 import { FaLocationDot, FaXTwitter } from "react-icons/fa6";
 import logo from "../../assets/logo2.jpg";
+import { Link } from "react-router";
 
 const Footer = () => {
   return (
     <div className=" p-16 pb-0 max-lg:p-5 bg-[#271300] text-white bg-[url(https://i.ibb.co.com/7J0kzPp7/Screenshot-12-11-2025-15747-bgjar-com.jpg)] bg-no-repeat bg-cover">
-      <div className="w-11/12 mx-auto flex max-md:flex-col max-md:gap-8 mb-10">
+      <div className="max-w-[1240px] mx-auto flex max-md:flex-col max-md:gap-8 mb-10">
         <div className="text-[#fee2d1] md:w-[25%]">
           <div className="flex items-center">
-            <img className="w-12 h-12 mb-3 rounded-full  " src={logo} alt="" />
+            <img className="w-10 h-10 mb-3 rounded-full  " src={logo} alt="" />
             <a className=" text-3xl font-bold ml-2 mb-2">
               Travel<span className="text-secondary">Ease</span>
             </a>
@@ -47,13 +48,24 @@ const Footer = () => {
           </div>
           <div>
             <h2 className="text-xl font-medium mb-5 text-primary-content">
-              Privacy Policy
+              Quick Links
             </h2>
             <ul className="space-y-3">
-              <li>Information that we collect</li>
-              <li>Your privacy controls</li>
-              <li>About this policy</li>
-              <li>Update</li>
+              <li>
+                <Link to="/all-vehicles">All Vehicles</Link>
+              </li>
+              <li>
+                <Link to="/about">About Us</Link>
+              </li>
+              <li>
+                <Link to="/Contact">Contact Us</Link>
+              </li>
+              <li>
+                <Link to="/add-vehicle">Add Vehicle</Link>
+              </li>
+              <li>
+                <Link to="/My-vehicles">My Vehicles</Link>
+              </li>
             </ul>
           </div>
           <div>

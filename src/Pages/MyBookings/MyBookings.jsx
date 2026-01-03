@@ -3,7 +3,12 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import Loading from "../../Components/Loading/Loading";
 import { SiTicktick } from "react-icons/si";
-import { MdOutlineCancel } from "react-icons/md";
+import {
+  MdOutlineCancel,
+  MdDirectionsCar,
+  MdOutlineDateRange,
+} from "react-icons/md";
+import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 
 const MyBookings = () => {
@@ -19,14 +24,21 @@ const MyBookings = () => {
     });
   }, [axiosSecure, user]);
 
-  if (loading) {
-    return <Loading></Loading>;
-  }
+  if (loading) return <Loading />;
+
   if (!vehicles || vehicles.length === 0) {
     return (
-      <p className="text-5xl font-bold min-h-screen flex justify-center items-center text-primary">
-        No Booking Request Found.
-      </p>
+      <div className="min-h-[60vh] flex flex-col justify-center items-center text-center px-4">
+        <div className="bg-base-200 p-8 rounded-full mb-4">
+          <MdDirectionsCar size={60} className="text-base-300" />
+        </div>
+        <h2 className="text-3xl font-bold text-base-content">
+          No Bookings Found
+        </h2>
+        <p className="text-gray-500 mt-2">
+          You haven't made any booking requests yet.
+        </p>
+      </div>
     );
   }
 
@@ -53,6 +65,8 @@ const MyBookings = () => {
       if (result.isConfirmed) {
         axiosSecure.delete(`/my-bookings/${id}`).then((data) => {
           if (data.data.deletedCount) {
+            const remaining = vehicles.filter((vehicle) => vehicle._id !== id);
+            setVehicles(remaining);
             Swal.fire({
               title: "Deleted!",
               text: "Your booking request has been deleted.",
@@ -65,68 +79,154 @@ const MyBookings = () => {
   };
 
   return (
-    <div className="py-26 lg:w-7xl mx-auto px-5">
-      <h1 className="text-4xl md:text-5xl text-center font-bold mb-3 text-primary">
-        My Bookings Collection
-      </h1>
-      <p className="text-base md:text-lg lg:w-[80%] mx-auto font-medium text-accent text-center mb-5">
-        Manage your travel plans effortlessly with the TraveLease Booking
-        Section. Here, users can easily view, confirm, or cancel their bookings
-        with just a few clicks. Enjoy a smooth experience with clear details on
-        trip schedules, pricing, and availability.
-      </p>
+    <div className="space-y-6">
+      {/* Header Section */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-bold text-base-content">
+            My Bookings
+          </h1>
+          <p className="text-sm text-gray-500 mt-1">
+            Manage and track your upcoming travel requests.
+          </p>
+        </div>
+        <div className="bg-secondary/10 text-secondary px-4 py-2 rounded-xl border border-secondary/20 text-sm font-bold">
+          Total Bookings: {vehicles.length}
+        </div>
+      </div>
 
-      <div className=" lg:overflow-x-auto py-4">
-        <table className="table bg-base-200 shadow-md rounded-xl">
-          <thead className="bg-base-300 ">
-            <tr className="text-left text-primary text-lg">
-              <th>Image</th>
-              <th>Vehicle Name</th>
-              <th className="max-sm:hidden">Category</th>
-              <th className="max-md:hidden">Booked By</th>
-
-              <th className="max-lg:hidden">Booked At</th>
-              <th className="text-center">Actions</th>
+      {/* Desktop View Table */}
+      <div className="hidden lg:block bg-base-100 rounded-3xl border border-base-300 shadow-sm overflow-hidden">
+        <table className="table w-full border-collapse">
+          <thead>
+            <tr className="bg-primary text-white">
+              <th className="py-5 px-6 uppercase text-[11px] font-bold tracking-wider">
+                Vehicle
+              </th>
+              <th className="py-5 px-6 uppercase text-[11px] font-bold tracking-wider">
+                Category
+              </th>
+              <th className="py-5 px-6 uppercase text-[11px] font-bold tracking-wider">
+                Booking Date
+              </th>
+              <th className="py-5 px-6 uppercase text-[11px] font-bold tracking-wider text-center">
+                Actions
+              </th>
             </tr>
           </thead>
-          <tbody className="">
+          <tbody className="divide-y divide-base-200">
             {vehicles.map((vehicle) => (
               <tr
                 key={vehicle._id}
-                className="bg-gray-200 hover:bg-base-200 transition-all font-semibold text-accent text-base"
+                className="hover:bg-base-200/30 transition-colors"
               >
-                <td>
-                  <img
-                    src={vehicle.coverImage}
-                    alt={vehicle.vehicleName}
-                    className="w-20 h-20 object-cover rounded-md"
-                  />
+                <td className="py-4 px-6">
+                  <div className="flex items-center gap-4">
+                    <img
+                      src={vehicle.coverImage}
+                      alt={vehicle.vehicleName}
+                      className="w-14 h-14 object-cover rounded-xl shadow-sm border border-base-300"
+                    />
+                    <div>
+                      <p className="font-bold text-base-content">
+                        {vehicle.vehicleName}
+                      </p>
+                      <p className="text-xs text-gray-400">
+                        ID: {vehicle._id.slice(-6).toUpperCase()}
+                      </p>
+                    </div>
+                  </div>
                 </td>
-                <td className="font-semibold">{vehicle.vehicleName}</td>
-                <td className="max-sm:hidden">{vehicle.category}</td>
-                <td className="max-md:hidden">{vehicle.bookedBy}</td>
-
-                <td className="max-lg:hidden">
-                  {new Date(vehicle.bookedAt).toLocaleString()}
+                <td className="py-4 px-6">
+                  <span className="badge badge-ghost font-medium">
+                    {vehicle.category}
+                  </span>
                 </td>
-                <td className="flex flex-col lg:flex-row items-center justify-center pt-8 gap-2 mt-3 sm:mt-0">
-                  <button
-                    onClick={handleConfirm}
-                    className="btn btn-sm btn-primary text-white flex items-center gap-2 w-full sm:w-auto"
-                  >
-                    <SiTicktick /> Confirm
-                  </button>
-                  <button
-                    onClick={() => handleBookingReqDelete(vehicle._id)}
-                    className="btn btn-sm btn-secondary text-white flex items-center gap-2 w-full sm:w-auto"
-                  >
-                    <MdOutlineCancel size={18} /> Cancel
-                  </button>
+                <td className="py-4 px-6">
+                  <div className="flex flex-col">
+                    <span className="text-sm font-medium">
+                      {new Date(vehicle.bookedAt).toLocaleDateString()}
+                    </span>
+                    <span className="text-[10px] text-gray-400">
+                      {new Date(vehicle.bookedAt).toLocaleTimeString()}
+                    </span>
+                  </div>
+                </td>
+                <td className="py-4 px-6">
+                  <div className="flex items-center justify-center gap-2">
+                    <button
+                      onClick={handleConfirm}
+                      className="btn btn-sm btn-primary rounded-lg text-white"
+                      title="Confirm Booking"
+                    >
+                      <SiTicktick /> Confirm
+                    </button>
+                    <button
+                      onClick={() => handleBookingReqDelete(vehicle._id)}
+                      className="btn btn-sm btn-outline btn-error rounded-lg"
+                      title="Cancel Booking"
+                    >
+                      <MdOutlineCancel size={18} /> Cancel
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Mobile/Tablet View (Card Layout) */}
+      <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-4">
+        {vehicles.map((vehicle) => (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            key={vehicle._id}
+            className="bg-base-100 p-5 rounded-2xl border border-base-300 shadow-sm space-y-4"
+          >
+            <div className="flex items-center gap-4 border-b border-base-200 pb-4">
+              <img
+                src={vehicle.coverImage}
+                alt={vehicle.vehicleName}
+                className="w-16 h-16 object-cover rounded-xl shadow-inner"
+              />
+              <div className="flex-1">
+                <h3 className="font-bold text-lg leading-tight">
+                  {vehicle.vehicleName}
+                </h3>
+                <span className="text-xs font-semibold text-secondary uppercase">
+                  {vehicle.category}
+                </span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 text-sm">
+              <div className="flex items-center gap-2 text-gray-500">
+                <MdOutlineDateRange className="text-secondary" />
+                <span>{new Date(vehicle.bookedAt).toLocaleDateString()}</span>
+              </div>
+              <div className="text-right font-medium text-xs text-gray-400">
+                ID: {vehicle._id.slice(-6).toUpperCase()}
+              </div>
+            </div>
+
+            <div className="flex gap-2 pt-2">
+              <button
+                onClick={handleConfirm}
+                className="btn btn-primary btn-sm flex-1 rounded-xl text-white shadow-lg shadow-primary/20"
+              >
+                <SiTicktick /> Confirm
+              </button>
+              <button
+                onClick={() => handleBookingReqDelete(vehicle._id)}
+                className="btn btn-outline btn-error btn-sm flex-1 rounded-xl"
+              >
+                <MdOutlineCancel size={18} /> Cancel
+              </button>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </div>
   );

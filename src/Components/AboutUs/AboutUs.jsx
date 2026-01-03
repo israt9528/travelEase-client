@@ -47,7 +47,7 @@ const AboutUs = () => {
           Drive Your Dreams with{" "}
           <span className="text-secondary">TravelEase</span>
         </h2>
-        <p className="mt-4 text-base md:text-lg text-accent max-w-2xl mx-auto ">
+        <p className="mt-4 text-base md:text-lg text-accent max-w-3xl mx-auto ">
           <span className="text-secondary">TravelEase</span> makes every journey
           effortless and enjoyable. With a fleet of premium vehicles,
           transparent pricing, and a seamless booking experience.
@@ -55,7 +55,7 @@ const AboutUs = () => {
       </motion.div>
 
       {/* Cards */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[1240px] mx-auto">
         {features.map((item, i) => (
           <motion.div
             key={item.id}

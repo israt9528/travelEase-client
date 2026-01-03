@@ -23,7 +23,7 @@ const owners = [
 
 const Owners = () => {
   return (
-    <section className="py-16 bg-linear-to-b from-gray-900 to-black ">
+    <section className="py-16 bg-linear-to-b from-gray-900 to-black">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
@@ -42,7 +42,7 @@ const Owners = () => {
       </motion.div>
 
       {/* Owner Cards */}
-      <div className="flex flex-wrap justify-center gap-10 px-6">
+      <div className="flex flex-wrap justify-center gap-10 px-6 mx-auto">
         {owners.map((owner, index) => (
           <motion.div
             key={index}

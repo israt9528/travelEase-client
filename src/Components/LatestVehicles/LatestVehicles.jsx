@@ -20,7 +20,7 @@ const LatestVehicles = () => {
   }
 
   return (
-    <div className="lg:w-7xl mx-auto py-20 text-center p-5">
+    <div className="lg:max-w-7xl mx-auto py-20 text-center p-5">
       <h1 className="text-4xl md:text-5xl font-bold">
         Our <span className="text-secondary">Latest</span> Vehicle Arrivals
       </h1>

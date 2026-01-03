@@ -11,6 +11,11 @@ import PrivateRoute from "./PrivateRoute";
 import VehicleDetails from "../Pages/VehicleDetails/VehicleDetails";
 import UpdateVehicle from "../Pages/UpdateVehicle/UpdateVehicle";
 import Error from "../Pages/Error/Error";
+import DashboardLayout from "../Layout/DashboardLayout";
+import DashboardHome from "../Pages/DashboardHome/DashboardHome";
+import Profile from "../Pages/Profile/Profile";
+import About from "../Pages/About/About";
+import Contact from "../Pages/Contact/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +40,14 @@ export const router = createBrowserRouter([
         element: <AllVehicles></AllVehicles>,
       },
       {
+        path: "/about",
+        element: <About></About>,
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
+      },
+      {
         path: "/add-vehicle",
         element: (
           <PrivateRoute>
@@ -50,21 +63,10 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: "/my-bookings",
-        element: (
-          <PrivateRoute>
-            <MyBookings></MyBookings>
-          </PrivateRoute>
-        ),
-      },
+
       {
         path: "/vehicle-details/:id",
-        element: (
-          <PrivateRoute>
-            <VehicleDetails></VehicleDetails>
-          </PrivateRoute>
-        ),
+        element: <VehicleDetails></VehicleDetails>,
       },
       {
         path: "/update/:id",
@@ -73,6 +75,28 @@ export const router = createBrowserRouter([
             <UpdateVehicle></UpdateVehicle>
           </PrivateRoute>
         ),
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        index: true,
+        Component: DashboardHome,
+      },
+      {
+        path: "profile",
+        Component: Profile,
+      },
+      {
+        path: "my-bookings",
+        Component: MyBookings,
       },
     ],
   },

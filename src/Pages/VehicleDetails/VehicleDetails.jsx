@@ -13,21 +13,23 @@ import {
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { FaArrowLeft } from "react-icons/fa6";
+import useAxios from "../../hooks/useAxios";
 
 const VehicleDetails = () => {
   const axiosSecure = useAxiosSecure();
+  const axiosInstance = useAxios();
   const { user } = useAuth();
   const { id } = useParams();
   const [vehicle, setVehicle] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axiosSecure.get(`/vehicles/${id}`).then((data) => {
+    axiosInstance.get(`/vehicles/${id}`).then((data) => {
       //   console.log(data.data);
       setVehicle(data.data);
       setLoading(false);
     });
-  }, [id, axiosSecure]);
+  }, [id, axiosInstance]);
 
   const handleBooked = () => {
     const {

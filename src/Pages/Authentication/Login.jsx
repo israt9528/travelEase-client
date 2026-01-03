@@ -2,167 +2,170 @@ import React, { use, useState } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import { Link, NavLink, useLocation, useNavigate } from "react-router";
 import toast from "react-hot-toast";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { FaRegEye, FaRegEyeSlash, FaMagic } from "react-icons/fa";
 import { IoLogIn } from "react-icons/io5";
+import { motion } from "framer-motion";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
   const { userLogin, loginWithGoogle, setUser } = use(AuthContext);
   const [error, setError] = useState("");
   const [show, setShow] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
   const location = useLocation();
-  const [email, setEmail] = useState("");
+
+  // --- SINGLE DEMO LOGIN HANDLER ---
+  const handleDemoLogin = () => {
+    setError("");
+    setEmail("israt@jahan.com");
+    setPassword("1234Abc");
+    toast.success("Demo credentials applied!", {
+      style: {
+        borderRadius: "10px",
+        background: "#333",
+        color: "#fff",
+      },
+    });
+  };
 
   const handleLoginWithGoogle = () => {
     setError("");
     loginWithGoogle()
       .then((res) => {
-        const user = res.user;
-        setUser(user);
-        navigate(`${location.state ? location.state : "/"}`);
+        setUser(res.user);
+        navigate(location.state || "/");
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        setError(errorMessage, errorCode);
-      });
+      .catch((err) => setError(err.message));
   };
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-
     setError("");
 
     userLogin(email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        toast.success(
-          "🎉 You’re in! Thanks for joining the TravelEase family!"
-        );
-        e.target.reset();
-
-        navigate(`${location.state ? location.state : "/"}`);
+      .then(() => {
+        toast.success("Welcome to TravelEase!");
+        navigate(location.state || "/");
       })
-      .catch((error) => {
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        setError("❌ Login failed. Please check your credentials.");
-      });
-  };
-
-  const handlePasswordToggle = (e) => {
-    e.preventDefault();
-    setShow(!show);
+      .catch(() => setError("Invalid email or password."));
   };
 
   return (
-    <div className="bg-base-200 py-30 px-3">
-      <div className="card bg-primary w-full max-w-md shrink-0 shadow-2xl mx-auto p-5 pt-8">
-        <h1 className="text-base-200 text-5xl font-bold text-center leading-8">
-          Welcome Back!{" "}
-          <span className="text-2xl text-base-300">
-            Please Login to Continue.
-          </span>
-        </h1>
+    <div className="min-h-screen bg-base-200 flex items-center justify-center px-4 py-20">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="card bg-primary w-full max-w-md shadow-2xl relative overflow-hidden rounded-[2.5rem]"
+      >
+        {/* Background Accents */}
+        <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full -mr-20 -mt-20 blur-3xl"></div>
 
-        <div className="card-body">
-          <form onSubmit={handleLogin}>
+        <div className="p-10 relative z-10">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-black text-white mb-2">Login</h1>
+            <p className="text-primary-content/60 text-sm">
+              Enter your details to access your dashboard
+            </p>
+          </div>
+
+          {/* SINGLE DEMO BUTTON - Modern Highlight Style */}
+          <button
+            type="button"
+            onClick={handleDemoLogin}
+            className="w-full mb-8 py-3 px-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-2xl flex items-center justify-between group transition-all"
+          >
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-accent rounded-lg text-white shadow-lg shadow-accent/20">
+                <FaMagic className="group-hover:rotate-12 transition-transform" />
+              </div>
+              <div className="text-left">
+                <p className="text-xs text-white/50 font-bold uppercase tracking-widest">
+                  Testing the app?
+                </p>
+                <p className="text-sm text-white font-bold">Use Demo Account</p>
+              </div>
+            </div>
+            <div className="text-white/30 group-hover:text-white transition-colors pr-2">
+              Auto-fill
+            </div>
+          </button>
+
+          <form onSubmit={handleLogin} className="space-y-5">
             {error && (
-              <div className="mb-5 p-5 rounded bg-red-200 text-red-700 font-semibold text-center">
+              <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-200 text-xs font-bold text-center">
                 {error}
               </div>
             )}
 
-            <fieldset className="fieldset">
-              <label className="label text-white">Email</label>
+            <div className="form-control">
+              <label className="label text-white/70 text-xs font-black uppercase tracking-widest">
+                Email
+              </label>
               <input
                 type="email"
-                name="email"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="input w-full"
-                placeholder="Enter your email"
+                placeholder="demo@travelease.com"
+                className="input input-bordered w-full bg-white/5 border-white/10 text-white focus:border-accent focus:outline-none rounded-xl"
+                required
               />
-              <div className="relative">
-                <label className="label text-white">Password</label>
-                <input
-                  type={show ? "text" : "password"}
-                  name="password"
-                  className="input w-full"
-                  placeholder="Type password"
-                />
+            </div>
 
-                <button
-                  onClick={handlePasswordToggle}
-                  className=" absolute right-2.5 top-7.5 z-10"
-                >
-                  {show ? <FaRegEyeSlash size={16} /> : <FaRegEye size={16} />}
-                </button>
-              </div>
-              <div>
-                <Link
-                  // to="/forgetPassword"
-                  state={{ email }}
-                  className="link link-hover text-white"
-                >
-                  Forgot password?
-                </Link>
-              </div>
-              <button className="btn mt-4 text-lg font-bold btn-accent text-white hover:text-accent-content hover:bg-white">
-                <IoLogIn size={18} /> Login
-              </button>
+            <div className="form-control relative">
+              <label className="label text-white/70 text-xs font-black uppercase tracking-widest">
+                Password
+              </label>
+              <input
+                type={show ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                className="input input-bordered w-full bg-white/5 border-white/10 text-white focus:border-accent focus:outline-none rounded-xl"
+                required
+              />
               <button
-                onClick={handleLoginWithGoogle}
-                className="btn bg-white text-accent-content text-base border-[#e5e5e5] hover:bg-accent hover:text-white"
+                type="button"
+                onClick={() => setShow(!show)}
+                className="absolute right-4 top-8.5 text-white/30 hover:text-white"
               >
-                <svg
-                  aria-label="Google logo"
-                  width="16"
-                  height="16"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512"
-                >
-                  <g>
-                    <path d="m0 0H512V512H0" fill="#fff"></path>
-                    <path
-                      fill="#34a853"
-                      d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
-                    ></path>
-                    <path
-                      fill="#4285f4"
-                      d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
-                    ></path>
-                    <path
-                      fill="#fbbc02"
-                      d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
-                    ></path>
-                    <path
-                      fill="#ea4335"
-                      d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
-                    ></path>
-                  </g>
-                </svg>
-                Login with Google
+                {show ? <FaRegEyeSlash size={18} /> : <FaRegEye size={18} />}
               </button>
-            </fieldset>
+            </div>
+
+            <button className="btn btn-accent w-full rounded-xl text-white font-black text-lg shadow-lg shadow-accent/30 hover:scale-[1.01] transition-transform">
+              <IoLogIn size={22} /> Sign In
+            </button>
+
+            <div className="divider text-white/10 text-[10px] font-bold uppercase tracking-widest">
+              Social Login
+            </div>
+
+            <button
+              type="button"
+              onClick={handleLoginWithGoogle}
+              className="btn w-full bg-white hover:bg-white/90 text-gray-900 border-none rounded-xl font-bold flex items-center justify-center gap-3"
+            >
+              <FcGoogle />
+              Continue with Google
+            </button>
           </form>
 
-          <p className="text-white">
-            New to our website? Please{" "}
+          <p className="text-center mt-10 text-white/50 text-sm">
+            Don't have an account?{" "}
             <NavLink
-              className="text-secondary hover:text-accent hover:underline"
               to="/auth/register"
+              className="text-accent font-bold hover:underline"
             >
-              Register
+              Create Account
             </NavLink>
           </p>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
+
 export default Login;
