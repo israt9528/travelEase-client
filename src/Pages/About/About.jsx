@@ -49,7 +49,7 @@ const About = () => {
     <div className="bg-base-100 overflow-hidden">
       {/* Hero Section */}
       <section className="relative py-20 lg:py-32 bg-base-200">
-        <div className="container mx-auto px-35 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto px-6 lg:px-35 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -110,7 +110,7 @@ const About = () => {
       </section>
 
       {/* Mission & Values */}
-      <section className="py-24 container mx-auto px-35">
+      <section className="py-24 container mx-auto px-6 lg:px-35">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Our Core Values
@@ -149,7 +149,7 @@ const About = () => {
 
       {/* Team Section */}
       <section className="py-24 bg-base-200/30">
-        <div className="container mx-auto px-35">
+        <div className="container mx-auto px-6 lg:px-35">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
               <h2 className="text-4xl font-bold mb-2">Meet the Experts</h2>

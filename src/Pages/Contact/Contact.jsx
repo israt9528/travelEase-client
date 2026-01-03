@@ -22,7 +22,7 @@ const Contact = () => {
         </div>
       </section>
 
-      <div className="container mx-auto px-35 py-16">
+      <div className="container mx-auto px-6 lg:px-35 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           {/* Contact Information & Map */}
           <div className="lg:col-span-5 space-y-12">
@@ -134,7 +134,7 @@ const Contact = () => {
 
       {/* Office Hours Footer */}
       <section className="py-12 bg-base-200/30 border-t border-base-200">
-        <div className="container mx-auto px-35 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="container mx-auto px-6 lg:px-35 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-3 text-gray-500">
             <FiClock className="text-primary" />
             <span>
